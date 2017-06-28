@@ -2,11 +2,12 @@
 //  AppDelegate.m
 //  testAnimation
 //
-//  Created by Марина Звягина on 28.06.17.
-//  Copyright © 2017 Zvyagina Marina. All rights reserved.
+//  Created by iOS-School-1 on 03.06.17.
+//  Copyright © 2017 iOS-School-1. All rights reserved.
 //
 
 #import "AppDelegate.h"
+#import "ViewController.h"
 
 @interface AppDelegate ()
 
@@ -16,7 +17,12 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    ViewController *viewController = [ViewController new];
+    self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
+    _window.rootViewController = viewController;
+    
+    [_window makeKeyAndVisible];
+    
     return YES;
 }
 

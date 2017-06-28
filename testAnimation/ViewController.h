@@ -2,8 +2,8 @@
 //  ViewController.h
 //  testAnimation
 //
-//  Created by Марина Звягина on 28.06.17.
-//  Copyright © 2017 Zvyagina Marina. All rights reserved.
+//  Created by iOS-School-1 on 03.06.17.
+//  Copyright © 2017 iOS-School-1. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
