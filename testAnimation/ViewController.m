@@ -23,17 +23,23 @@
     button.backgroundColor = [UIColor blueColor];
     [button addTarget:self action:@selector(makeInvisible) forControlEvents:UIControlEventTouchUpInside];
     
-    UIButton *button2 = [[UIButton alloc] initWithFrame:CGRectMake(120, 20, 40, 50)];
+    UIButton *button2 = [[UIButton alloc] initWithFrame:CGRectMake(100, 20, 40, 50)];
     button2.backgroundColor = [UIColor grayColor];
     [button2 addTarget:self action:@selector(makeVisible) forControlEvents:UIControlEventTouchUpInside];
     
-    UIButton *button3 = [[UIButton alloc] initWithFrame:CGRectMake(220, 20, 40, 50)];
+    UIButton *button3 = [[UIButton alloc] initWithFrame:CGRectMake(180, 20, 40, 50)];
     button3.backgroundColor = [UIColor redColor];
     [button3 addTarget:self action:@selector(rotateView) forControlEvents:UIControlEventTouchUpInside];
     
-    UIButton *button4 = [[UIButton alloc] initWithFrame:CGRectMake(320, 20, 40, 50)];
+    UIButton *button4 = [[UIButton alloc] initWithFrame:CGRectMake(260, 20, 40, 50)];
     button4.backgroundColor = [UIColor yellowColor];
     [button4 addTarget:self action:@selector(moveView) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIButton *button5 = [[UIButton alloc] initWithFrame:CGRectMake(340, 20, 40, 50)];
+    button5.backgroundColor = [UIColor orangeColor];
+    [button5 addTarget:self action:@selector(groupAnimation) forControlEvents:UIControlEventTouchUpInside];
+    
+    
     
     self.visibleView = [[UIView alloc] initWithFrame:CGRectMake(100, 170, 100, 100)];
     self.visibleView.backgroundColor = [UIColor greenColor];
@@ -44,6 +50,7 @@
     [self.view addSubview:button2];
     [self.view addSubview:button3];
     [self.view addSubview:button4];
+    [self.view addSubview:button5];
     
     [self.view addSubview:self.visibleView];
     
@@ -104,6 +111,48 @@
         self.visibleView.center = f;
     }];
      */
+}
+
+-(void) groupAnimation {
+    
+    CABasicAnimation *zPosition = [CABasicAnimation animation];
+    zPosition.keyPath = @"zPosition";
+    zPosition.fromValue = @-1;
+    zPosition.toValue = @1;
+    zPosition.duration = 1.2;
+    
+    CAKeyframeAnimation *rotation = [CAKeyframeAnimation animation];
+    rotation.keyPath = @"transform.rotation";
+    rotation.values = @[ @0, @0.14, @0 ];
+    rotation.duration = 1.2;
+    rotation.timingFunctions = @[
+                                 [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut],
+                                 [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]
+                                 ];
+    
+    CAKeyframeAnimation *position = [CAKeyframeAnimation animation];
+    position.keyPath = @"position";
+    position.values = @[
+                        [NSValue valueWithCGPoint:CGPointZero],
+                        [NSValue valueWithCGPoint:CGPointMake(110, -20)],
+                        [NSValue valueWithCGPoint:CGPointZero]
+                        ];
+    position.timingFunctions = @[
+                                 [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut],
+                                 [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]
+                                 ];
+    position.additive = YES;
+    position.duration = 1.2;
+    
+    CAAnimationGroup *group = [[CAAnimationGroup alloc] init];
+    group.animations = @[ zPosition, rotation, position ];
+    group.duration = 1.2;
+    group.beginTime = 0.5;
+    
+    [self.visibleView.layer addAnimation:group forKey:@"shuffle"];
+    
+    self.visibleView.layer.zPosition = 1;
+    
 }
 
 - (void)didReceiveMemoryWarning {
