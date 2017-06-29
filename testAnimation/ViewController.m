@@ -22,7 +22,7 @@ static NSUInteger countOfButtons = 5;
     NSMutableArray <UIButton *> *currentButtons = [NSMutableArray<UIButton *> new];
     
     for (NSUInteger i = 0; i<countOfButtons; i++) {
-        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(i*50 + 20, 20, 40, 50)];
+        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(i*70 + 10, 20, 40, 50)];
         button.backgroundColor = colors[i];
         [currentButtons addObject:button];
         [self.view addSubview:button];
