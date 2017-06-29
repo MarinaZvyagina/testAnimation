@@ -91,26 +91,7 @@
     orbit.rotationMode = kCAAnimationRotateAuto;
     
     [self.visibleView.layer addAnimation:orbit forKey:@"orbit"];
-    
-    
-   /* CAKeyframeAnimation *animation = [CAKeyframeAnimation animation];
-    animation.keyPath = @"position.x";
-    animation.values = @[ @0, @10, @-10, @10, @0 ];
-    animation.keyTimes = @[ @0, @(1 / 6.0), @(3 / 6.0), @(5 / 6.0), @1 ];
-    animation.duration = 0.4;
-    
-    animation.additive = YES;
-    
-    [self.visibleView.layer addAnimation:animation forKey:@"shake"];
-    */
-    /*
-    CGPoint f = self.visibleView.center;
-    f.x = rand() % 300; // new x
-    f.y = rand() %300; // new y
-    [UIView animateWithDuration:4.0 animations:^{
-        self.visibleView.center = f;
-    }];
-     */
+
 }
 
 -(void) groupAnimation {
